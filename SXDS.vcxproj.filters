@@ -18,8 +18,5 @@
     <ClCompile Include="SXDS.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="1.1 随机数的生成.cpp">
-      <Filter>资源文件</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
