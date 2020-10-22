@@ -1,10 +1,11 @@
-ï»¿// æ­¤æ–‡ä»¶åŒ…å« "main" å‡½æ•°ã€‚ç¨‹åºæ‰§è¡Œå°†åœ¨æ­¤å¤„å¼€å§‹å¹¶ç»“æŸã€‚
+
+// ´ËÎÄ¼ş°üº¬ "main" º¯Êı¡£³ÌĞòÖ´ĞĞ½«ÔÚ´Ë´¦¿ªÊ¼²¢½áÊø¡£
 //
 
-#include <iostream>     // è¾“å…¥è¾“å‡ºæµå¤´æ–‡ä»¶
-#include <algorithm>    // ç®—æ³•åº“
-#include <list>		// é“¾è¡¨
-#include <vector>	// é¡ºåºå­˜å‚¨çš„é¡ºåºè¡¨
+#include <iostream>     // ÊäÈëÊä³öÁ÷Í·ÎÄ¼ş
+#include <algorithm>    // Ëã·¨¿â
+#include <list>		// Á´±í
+#include <vector>	// Ë³Ğò´æ´¢µÄË³Ğò±í
 #include <map>		
 #include <sstream>
 #include <string>
@@ -18,6 +19,7 @@ int main()
 
 	list<int> a;
 
+	// À¬»øopenjudge£¬ÊäÈë×îºó¾ÓÈ»Ã»ÓĞ»»ĞĞ·û
 	for (; !cin.eof();)
 	{
 		map<expo, coefc, greater<int>> m;
