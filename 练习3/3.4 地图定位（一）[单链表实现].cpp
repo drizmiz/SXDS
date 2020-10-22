@@ -1,9 +1,9 @@
-ï»¿// æ­¤æ–‡ä»¶åŒ…å« "main" å‡½æ•°ã€‚ç¨‹åºæ‰§è¡Œå°†åœ¨æ­¤å¤„å¼€å§‹å¹¶ç»“æŸã€‚
+// ´ËÎÄ¼ş°üº¬ "main" º¯Êı¡£³ÌĞòÖ´ĞĞ½«ÔÚ´Ë´¦¿ªÊ¼²¢½áÊø¡£
 //
 
-#include <iostream>     // è¾“å…¥è¾“å‡ºæµå¤´æ–‡ä»¶
-#include <algorithm>    // ç®—æ³•åº“
-//#include <list>		// é“¾è¡¨
+#include <iostream>     // ÊäÈëÊä³öÁ÷Í·ÎÄ¼ş
+#include <algorithm>    // Ëã·¨¿â
+//#include <list>		// Á´±í
 #include <iomanip>		// i/o manipulate
 #include <memory>
 
@@ -56,20 +56,11 @@ public:
 
 	node_p find(const T& needle) const
 	{
-		for (node_p it = begin(); it ; it = it->next)
+		for (node_p it = begin(); it; it = it->next)
 		{
 			if (it->data == needle)
 				return it;
 		}
-		return nullptr;
-	}
-
-	template<class Pr>
-	node_p find_if(const T& needle, node_p start, Pr pred)
-	{
-		for (; start; start = start->next)
-			if (pred(start->data))
-				return start;
 		return nullptr;
 	}
 };
@@ -81,10 +72,6 @@ struct location
 	bool operator==(const location& rhs) const
 	{
 		return name == rhs.name;
-	}
-	double distance(const location& rhs) const
-	{
-		return sqrt(pow(rhs.x - x, 2) + pow(rhs.y - y, 2));
 	}
 };
 
@@ -100,38 +87,14 @@ int main()
 		cin >> loc.name >> loc.x >> loc.y;
 		p = locs.insert(p, move(loc));
 	}
-	size_t PDnum;
-	cin >> PDnum;
-	for (size_t i = 0; i < PDnum; i++)
+	size_t searchnum;
+	cin >> searchnum;
+	for (size_t i = 0; i < searchnum; i++)
 	{
 		location needle;
-		cin >> needle.x >> needle.y;
-
-		double dist = 0.0;
-		cin >> dist;
-
-		bool first = true;
-		for (auto it = locs.begin(); it; )
-		{
-			auto found = locs.find_if(needle, it,
-				[&](const location& loc) {
-					return needle.distance(loc) <= dist;
-				}
-			);
-			if (!found)
-				break;
-
-			if (!first)
-				cout << ' ';
-			else
-				first = false;
-			cout << found->data.name;
-
-			it = found->next;
-		}
-
-		if (first)
-			cout << "æœªæ‰¾åˆ°åœ°ç‚¹";
-		cout << endl;
+		cin >> needle.name;
+		auto it = locs.find(needle);
+		cout << fixed << setprecision(1);
+		cout << it->data.x << ' ' << it->data.y << endl;
 	}
 }
