@@ -2,136 +2,82 @@
 //
 
 #include <iostream>     // 输入输出流头文件
-#include <algorithm>    // 算法库
-//#include <list>		// 链表
-#include <iomanip>		// i/o manipulate
-#include <memory>
+#include <string>
+#include <iomanip>
 
 using namespace std;
 
-template <typename T>
-class mforward_list
+string encode(const string& s)
 {
-public:
-	struct node;
-	using node_p = shared_ptr<node>;
-
-	struct node
-	{
-		T data;
-		node_p next;
-	};
-private:
-	size_t _size = 0;
-
-	node_p before_first = nullptr;
-	//node_p last = nullptr;
-public:
-	size_t size() const { return _size; }
-	node_p before_begin() const { return before_first; }
-	node_p begin() const { return before_first->next; }
-
-	mforward_list() {
-		node_p head = make_shared<node>();
-		//head->data is undefined
-		head->next = nullptr;
-		before_first = head;
-	}
-
-	// insert after
-	node_p insert(node_p nodep, T&& data)
-	{
-		node_p newnode = make_shared<node>();
-		newnode->data = move(data);
-		newnode->next = nodep->next;
-		nodep->next = newnode;
-		++_size;
-		return newnode;
-	}
-
-	void push_front(T&& data)
-	{
-		insert(before_first, move(data));
-	}
-
-	node_p find(const T& needle) const
-	{
-		for (node_p it = begin(); it ; it = it->next)
-		{
-			if (it->data == needle)
-				return it;
-		}
-		return nullptr;
-	}
-
-	template<class Pr>
-	node_p find_if(const T& needle, node_p start, Pr pred)
-	{
-		for (; start; start = start->next)
-			if (pred(start->data))
-				return start;
-		return nullptr;
-	}
-};
-
-struct location
-{
-	string name;
-	double x = 0.0, y = 0.0;
-	bool operator==(const location& rhs) const
-	{
-		return name == rhs.name;
-	}
-	double distance(const location& rhs) const
-	{
-		return sqrt(pow(rhs.x - x, 2) + pow(rhs.y - y, 2));
-	}
-};
+	string ret;
+	for (auto c : s)
+		if (c >= 'a' && c <= 'z')
+			ret.push_back('a' + (c - 'a' + 1) % 26);
+		else if (c >= 'A' && c <= 'Z')
+			ret.push_back('A' + (c - 'A' + 1) % 26);
+		else
+			ret.push_back(c);
+	return move(ret);
+}
 
 int main()
 {
-	size_t spotnum;
-	cin >> spotnum;
-	mforward_list<location> locs;
-	auto p = locs.before_begin();
-	for (size_t i = 0; i < spotnum; i++)
+	size_t n = 0;
+	cin >> n;
+	(void)(cin.get());
+
+	for (size_t i = 0; i < n; i++)
 	{
-		location loc;
-		cin >> loc.name >> loc.x >> loc.y;
-		p = locs.insert(p, move(loc));
-	}
-	size_t PDnum;
-	cin >> PDnum;
-	for (size_t i = 0; i < PDnum; i++)
-	{
-		location needle;
-		cin >> needle.x >> needle.y;
-
-		double dist = 0.0;
-		cin >> dist;
-
-		bool first = true;
-		for (auto it = locs.begin(); it; )
-		{
-			auto found = locs.find_if(needle, it,
-				[&](const location& loc) {
-					return needle.distance(loc) <= dist;
-				}
-			);
-			if (!found)
-				break;
-
-			if (!first)
-				cout << ' ';
-			else
-				first = false;
-			cout << found->data.name;
-
-			it = found->next;
-		}
-
-		if (first)
-			cout << "未找到地点";
-		cout << endl;
+		string s;
+		getline(cin, s);
+		cout << encode(s) << endl;
 	}
 }
+
+#if false
+int findn(const string& s)
+{
+	string needle;
+	for (int i = 1; i <= s.size() / 2; ++i)
+	{
+		if (s.size() % i != 0)
+			continue;
+		needle = s.substr(0, i);
+		bool flag = true;
+		for (int j = i; j < s.size(); j++)
+		{
+			if (s[j] != needle[j % i])
+			{
+				flag = false;
+				break;
+			}
+		}
+		if (flag)
+			return s.size() / i;
+	}
+	return 1;
+}
+
+string s;
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	for (int c=1; ;++c)
+	{
+		int N;
+		cin >> N;
+		if (!N)
+			break;
+		s.resize(N, '\0');
+		
+		(void)(cin.get());
+		for (size_t i = 0; i < N; ++i)
+			s[i] = cin.get();
+
+		cout << "Test case #" << c << endl;
+		cout << findn(s) << endl;
+	}
+	return 0;
+}
+#endif
