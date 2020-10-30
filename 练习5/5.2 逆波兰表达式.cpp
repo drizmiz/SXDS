@@ -1,5 +1,5 @@
-ï»¿
-// æ­¤æ–‡ä»¶åŒ…å« "main" å‡½æ•°ã€‚ç¨‹åºæ‰§è¡Œå°†åœ¨æ­¤å¤„å¼€å§‹å¹¶ç»“æŸã€‚
+
+// ´ËÎÄ¼ş°üº¬ "main" º¯Êı¡£³ÌĞòÖ´ĞĞ½«ÔÚ´Ë´¦¿ªÊ¼²¢½áÊø¡£
 //
 
 #include <iostream>
@@ -89,61 +89,3 @@ int main()
 	getline(cin, s);
 	cout << fixed << setprecision(6) << lambda(s) << endl;
 }
-
-#if false
-int srch_regex(const string& str, const string& pattern)
-{
-	regex rg(pattern);
-	smatch sm;
-	if (!regex_search(str, sm, rg))
-		return -1;
-	else
-		return sm.position();
-}
-
-int findn(const string& s)
-{
-	string needle;
-	for (int i = 1; i <= s.size() / 2; ++i)
-	{
-		if (s.size() % i != 0)
-			continue;
-		needle = s.substr(0, i);
-		bool flag = true;
-		for (int j = i; j < s.size(); j++)
-		{
-			if (s[j] != needle[j % i])
-			{
-				flag = false;
-				break;
-			}
-		}
-		if (flag)
-			return s.size() / i;
-	}
-	return 1;
-}
-
-string s;
-
-int main()
-{
-	ios::sync_with_stdio(false);
-	for (int c=1; ;++c)
-	{
-		int N;
-		cin >> N;
-		if (!N)
-			break;
-		s.resize(N, '\0');
-		
-		(void)(cin.get());
-		for (size_t i = 0; i < N; ++i)
-			s[i] = cin.get();
-
-		cout << "Test case #" << c << endl;
-		cout << findn(s) << endl;
-	}
-	return 0;
-}
-#endif
