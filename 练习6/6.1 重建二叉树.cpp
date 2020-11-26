@@ -1,5 +1,5 @@
-ï»¿
-// æ­¤æ–‡ä»¶åŒ…å« "main" å‡½æ•°ã€‚ç¨‹åºæ‰§è¡Œå°†åœ¨æ­¤å¤„å¼€å§‹å¹¶ç»“æŸã€‚
+
+// ´ËÎÄ¼ş°üº¬ "main" º¯Êı¡£³ÌĞòÖ´ĞĞ½«ÔÚ´Ë´¦¿ªÊ¼²¢½áÊø¡£
 //
 
 #include <iostream>
@@ -76,65 +76,3 @@ int main()
 		cout << b_order(forder[0]) << endl;
 	}
 }
-
-/*
-using namespace std;
-
-int exec(char op, int lhs, int rhs)
-{
-	switch (op)
-	{
-	case '+':
-		return lhs + rhs;
-	case '-':
-		return lhs - rhs;
-	case '*':
-		return lhs * rhs;
-	case '/':
-		return lhs / rhs;
-	default:
-		throw exception((string("unknown operator ") + op).c_str());
-	}
-}
-
-const map<char, int> pr_table{
-	{'(', -1},
-	{'+', 0},
-	{'-', 0},
-	{'*', 1},
-	{'/', 1},
-	{')', 255}
-};
-
-bool prior_to(char op1, char op2)
-{
-	return pr_table.at(op1) > pr_table.at(op2);
-}
-
-int calc(const string& expr)
-{
-	stack<int> nums;
-	stack<char> ops;
-	string tmp_num;
-	for (auto& c : expr)
-	{
-		if (isdigit(c))
-		{
-			tmp_num.push_back(c);
-			continue;
-		}
-		if (!tmp_num.empty())
-		{
-			nums.push(stoi(tmp_num));
-			tmp_num.clear();
-		}
-		
-
-	}
-}
-
-int main()
-{
-	
-}
-*/
