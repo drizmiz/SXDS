@@ -1,4 +1,4 @@
-﻿
+
 // hash
 
 #include <iostream>
@@ -26,7 +26,7 @@ int main()
 	for (int i = 0; i < N; ++i)
 	{
 		cin >> recs[i].id >> recs[i].name
-			>> recs[i].score;	
+			>> recs[i].score;
 	}
 	switch (C)
 	{
