@@ -1,4 +1,4 @@
-ï»¿
+
 // main
 
 #include <iostream>
@@ -26,7 +26,7 @@ private:
 public:
 	uint row;
 	uint col;
-	matrix(uint M, uint N) : data(M* N), row(M), col(N) {  }		// M è¡Œ N åˆ—
+	matrix(uint M, uint N) : data(M* N), row(M), col(N) {  }		// M ÐÐ N ÁÐ
 	int& operator()(uint i, uint j) {
 #ifdef _DEBUG
 		assert(_Verify(i, j));
