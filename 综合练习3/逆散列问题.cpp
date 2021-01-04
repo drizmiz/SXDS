@@ -1,4 +1,4 @@
-﻿
+
 // main
 
 #include <iostream>
@@ -19,12 +19,12 @@ int linear_hash(int x)
 	return x % N;
 }
 
-class graph 
+class graph
 {
 private:
 	// adjacent table
 	vector<vector<int>> adj_of_points;
-	
+
 	// e_size is useless here
 	size_t n_size, e_size;
 
@@ -34,7 +34,7 @@ public:
 		in_degree(n), e_size(0) { }
 	uint nsize()const { return n_size; }
 	uint esize()const { return e_size; }
-	void link(int x, int y, int weight=0)
+	void link(int x, int y, int weight = 0)
 	{
 		adj_of_points[x].push_back(y);
 		e_size++;
